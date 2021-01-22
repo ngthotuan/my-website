@@ -1,0 +1,29 @@
+<!-- ======= ShortUrl Success Section ======= -->
+<div class="row" >
+    <div class="col col-offset-2">
+        <h1 class="alert alert-success text-center">Rút gọn liên kết thành công</h1>
+        <% if (errorMessage) { %>
+            <h4 class="alert alert-warning text-center">
+                <%= errorMessage %>
+            </h4>
+        <% } %>
+        <div class="mt-5 form form-row justify-content-center">
+            <input id="linkShare" type="text" class="col-5 form-control form" value="<%= shortUrl %>">
+            <button id="btnCopy" onclick="copyToClipboard()" class="mx-3 btn btn-success col-2" data-toggle="tooltip" data-placement="top" title="Nhấn để sao chép liên kết">
+                Sao chép liên kết
+            </button>
+            <a class="btn btn-info col-2" data-toggle="tooltip" data-placement="top" title="Truy cập liên kết" target="_blank" href="<%= shortUrl %>">Truy cập thử</a>
+            <script>
+                function copyToClipboard() {
+                    const copyText = document.getElementById('linkShare');
+                    copyText.select();
+                    document.execCommand("copy");
+                }
+            </script>
+        </div>
+        <div class="mt-5 text-center">
+            <h3>Rút gọn liên kết khác tại <a href="/url-shorten">đây</a></h3>
+        </div>
+    </div>
+</div>
+<!-- End ShortUrl Success Section -->

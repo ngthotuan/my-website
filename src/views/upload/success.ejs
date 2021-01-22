@@ -1,0 +1,34 @@
+<!-- ======= Upload Success Section ======= -->
+<div class="row" >
+    <div class="col col-offset-2">
+        <h1 class="alert alert-success text-center">Tải lên tệp <%= fileName %> thành công</h1>
+        <div class="mt-5 form form-row justify-content-center">
+            <div class="row row-cols-lg-auto g-3 justify-content-center align-items-center">
+                <div class="col-12">
+                    <input id="linkShare" class="form-control" type="text" name="search" value="<%= fileUrl %>">
+                </div>
+                <div class="col-12">
+                    <button id="btnCopy" onclick="copyToClipboard()"  class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nhấn để sao chép liên kết">
+                        Sao chép liên kết
+                    </button>
+                </div>
+                <div class="col-12">
+                    <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nhấn vào để tải file về" href="<%= fileUrl %>">
+                        Tải về
+                    </a>
+                </div>
+                <script>
+                    function copyToClipboard() {
+                        const copyText = document.getElementById('linkShare');
+                        copyText.select();
+                        document.execCommand("copy");
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="mt-5 text-center">
+            <h3>Tải lên tệp khác tại <a href="/upload">đây</a></h3>
+        </div>
+    </div>
+</div>
+<!-- End Upload Success Section -->

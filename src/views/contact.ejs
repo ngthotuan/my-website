@@ -1,0 +1,64 @@
+<!--Contact Section-->
+<div class="row">
+  <h2 class="text-center text-success my-3">Xem trên bản đồ</h2>
+  <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2261167813067!2d106.70518131418274!3d10.793986261822388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b3de459193%3A0xc965f6971d2cdc1d!2zNjcvMzUgWMO0IFZp4bq_dCBOZ2jhu4cgVMSpbmgsIFBoxrDhu51uZyAxNywgQsOsbmggVGjhuqFuaCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1606642321319!5m2!1sen!2s" allowfullscreen></iframe>
+</div>
+<div class="row text-center">
+  <h2 class="text-center text-success my-3">Thông tin liên hệ</h2>
+  <div class="col-lg-4">
+    <i class="icofont-google-map"></i>
+    <h4>Địa chỉ:</h4>
+    <p>67/35 Xô Viết Nghệ Tĩnh<br>Bình Thạnh, HCM</p>
+  </div>
+
+  <div class="col-lg-4 mt-4 mt-lg-0">
+    <i class="icofont-envelope"></i>
+    <h4>Email:</h4>
+    <p>contact@nguyenthotuan.me</p>
+  </div>
+
+  <div class="col-lg-4 mt-4 mt-lg-0">
+    <i class="icofont-phone"></i>
+    <h4>Điện thoại:</h4>
+    <p>+(84)975503208</p>
+  </div>
+</div>
+
+<div class="row mt-5 justify-content-center">
+  <div class="col-sm-10">
+    <form class="card card-body" id="formContact" action="/contact" method="POST">
+      <h2 class="text-center text-info my-3">Để lại lời nhắn</h2>
+      <div class="row my-3">
+        <div class="col">
+          <div class="form-floating">
+            <input id="name" name="name" class="form-control" placeholder="Tên của bạn">
+            <label for="name">Tên</label>
+            <div class="d-block invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input class="form-control" type="email" id="email" name="email" placeholder="Email của bạn">
+            <label for="email">Email</label>
+            <div class="d-block invalid-feedback"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-floating my-3">
+        <input type="text" class="form-control" id="subject" name="subject" placeholder="Chủ đề thư">
+        <label for="subject">Chủ đề</label>
+        <div class="d-block invalid-feedback"></div>
+      </div>
+      <div class="form-floating my-3">
+        <textarea id="message" name="message" class="form-control" style="height: 100px" placeholder="Nội dung thư"></textarea>
+        <label for="message">Nội dung</label>
+        <div class="d-block invalid-feedback"></div>
+      </div>
+      <div class="form-group text-center mt-2">
+        <button type="submit" class="btn btn-success btn-lg">Gửi tin nhắn</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<!-- End Contact Section -->

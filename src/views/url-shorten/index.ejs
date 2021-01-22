@@ -1,0 +1,33 @@
+<!--Url Shorten Section-->
+<div class="row mt-4">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Rút gọn liên kết</h2>
+            </div>
+            <div class="card-body">
+                <form id="formUrlShorten" action="/url-shorten" method="POST">
+                    <div class="form-group">
+                        <label for="fullUrl" class="col-form-label">Liên kết gốc *</label>
+                        <input  type="text" class="form-control" id="fullUrl" name="fullUrl" autocomplete="off" placeholder="Nhập địa chỉ muốn rút gọn...">
+                        <div class="d-block invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shortUrl" class="col-form-label">Tùy chỉnh liên kết</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">https://nguyenthotuan.me/go/</span>
+                            <input type="text" class="form-control" id="shortUrl" name="shortUrl" placeholder="Tùy chọn (Không bắt buộc)">
+                        </div>
+                        <div class="d-block invalid-feedback"></div>
+                    </div>
+                    <div class="form-group text-center mt-2">
+                        <button type="submit" class="btn btn-success btn-lg">Tải lên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--End Shorten Section-->

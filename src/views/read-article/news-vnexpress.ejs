@@ -1,0 +1,30 @@
+<!-- ======= Read Article VnExpress Section ======= -->
+<div class="alert alert-primary text-center" role="alert">
+    Cập nhật lần cuối: <%= moment(update).format('LTS, DD-MM-YYYY') %>
+</div>
+<div class="row">
+    <% items.forEach(function(item){ %>
+        <div class="col-sm-4 d-flex my-2">
+            <div class="card flex-fill">
+                <% if(item.image === 'none') {%>
+                    <img class="card-img-top w-80 img-card" src="/assets/img/image_not_found.jpg" alt="Image not found">
+                <% } else{%>
+                    <img class="card-img-top w-80 img-card" src="<%= item.image %>" alt="<%= item.title %>">
+                <% }%>
+                <div class="card-body">
+                    <h5 class="card-title"><%= item.title %></h5>
+                    <p class="card-text"><%= item.content %></p>
+                    <a href="<%= item.link %>" target="_blank">Xem chi tiết</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Lúc <%= moment(item.pubDate).format('LT, DD-MM') %></small>
+                    <button class="btn btn-info">Lưu dưới dạng hình ảnh</button>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+<div class="alert alert-secondary text-center" role="alert">
+    Số bài báo: <%= size %>
+</div>
+<!-- ======= End Read Article VnExpress Section ======= -->

@@ -1,0 +1,109 @@
+<!-- ======= Blog Section ======= -->
+<div class="row">
+
+    <div class="col-lg-8 entries">
+
+        <article class="entry entry-single" data-aos="fade-up">
+
+            <h2 class="entry-title">
+                <p><%= course.name %></p>
+            </h2>
+
+            <div class="entry-content">
+
+                <p><%= course.shortDescription %></p>
+
+                <!--                            <img src="/assets/img/blog-5.jpg" class="img-fluid" alt="">-->
+
+                <!--                        <h3>Phuong cham</h3>-->
+                <!--                        <blockquote>-->
+                <!--                            <i class="icofont-quote-left quote-left"></i>-->
+                <!--                            <p>-->
+                <!--                                Phuong cham khoa hoc-->
+                <!--                            </p>-->
+                <!--                            <i class="las la-quote-right quote-right"></i>-->
+                <!--                            <i class="icofont-quote-right quote-right"></i>-->
+                <!--                        </blockquote>-->
+
+
+                <h3>Chi tiết khóa học</h3>
+                <p>
+                    <%= course.description %>
+                </p>
+
+                <h3>Bạn sẽ học được gì</h3>
+                <p>
+                    <%= course.leanWhat %>
+                </p>
+
+                <h3>Yêu cầu cần thiết để tham gia khóa học</h3>
+                <p>
+                    <%= course.require %>
+                </p>
+
+            </div>
+
+
+        </article><!-- End blog entry -->
+
+        <div class="blog-comments" data-aos="fade-up">
+
+            <h4 class="comments-count"><%= course.coment %> Đánh giá</h4>
+
+            <div id="comment-1" class="comment clearfix">
+                <img src="/assets/img/comments-1.jpg" class="comment-img  float-left" alt="">
+                <h5><a href="">Teo Nguyen</a> <a href="#" class="reply"><i class="icofont-reply"></i> Trả lời</a></h5>
+                <time datetime="2020-01-01">01 Jan, 2020</time>
+                <p>
+                    Khóa học chi tiết, dễ hiểu lắm !!!
+                </p>
+
+            </div><!-- End comment #1 -->
+
+            <div class="reply-form">
+                <h4>Suy nghĩ của bạn về khóa học</h4>
+                <form action="">
+                    <div class="row">
+                        <div class="col form-group">
+                            <textarea name="comment" class="form-control" placeholder="Để lại suy nghĩ của bạn tại đây*"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng cảm nghĩ</button>
+
+                </form>
+
+            </div>
+
+        </div><!-- End blog comments -->
+
+    </div><!-- End blog entries list -->
+
+    <div class="col-lg-4">
+
+        <div class="sidebar" data-aos="fade-left">
+
+            <h3 class="sidebar-title">Video giới thiệu</h3>
+
+            <% if(course.image) {%>
+                <img class="img-fluid" src="/<%= course.image %>" alt="<%= course.name %>">
+            <% } else{%>
+                <img class="img-fluid" src="/assets/img/image_not_found.jpg" alt="Image not found">
+            <% }%>
+
+            <h4 class="mt-3">Giảng viên: <i><%= course.author %></i></h4>
+
+            <!--                    <h3 class="sidebar-title">Tags</h3>-->
+            <div class="sidebar-item tags">
+                <ul>
+                    <li><a href="#">450 học viên</a></li>
+                    <li><a href="#">20 đánh giá</a></li>
+                </ul>
+
+            </div><!-- End sidebar tags-->
+
+        </div><!-- End sidebar -->
+
+    </div><!-- End blog sidebar -->
+
+</div>
+<!-- End Blog Section -->
