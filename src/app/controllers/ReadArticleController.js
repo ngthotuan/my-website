@@ -1,5 +1,6 @@
 const request = require('request');
 const XmlUtils = require('../../utils/XmlUtils');
+const createError = require("http-errors");
 const url = 'https://vnexpress.net/rss/tin-moi-nhat.rss';
 require('dotenv').config();
 
@@ -7,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 class ReadArticleController {
     // GET /read-article
-    index(req, res) {
+    index(req, res, next) {
         request(
             {
                 url: `http://localhost:${PORT}${req.baseUrl}/api`,
@@ -15,8 +16,9 @@ class ReadArticleController {
             },
             function (error, response, body) {
                 if (error) {
+                    console.log(`${Date()} Server have an error while fetch data`);
                     console.log(error);
-                    res.send(`${Date()} Server have an error while fetch data`);
+                    next(createError(`Lấy dữ liệu không thành công`));
                 } else {
                     const { size, title, update, items } = JSON.parse(body);
                     res.render('read-article/news-vnexpress', {
@@ -65,7 +67,7 @@ class ReadArticleController {
                     };
                 });
                 res.json({
-                    title: `Get Data From ${title[0]}`,
+                    title: `Dữ liệu từ ${title[0]}`,
                     size: item.length,
                     update: pubDate[0],
                     items: itemCV,

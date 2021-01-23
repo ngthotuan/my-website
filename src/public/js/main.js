@@ -14,7 +14,7 @@ Validator({
         Validator.isConfirmed(
             '#password2',
             () => document.querySelector('#formRegister #password').value,
-            'Xác nhận mật khẩu không khớ',
+            'Xác nhận mật khẩu không khớp',
         ),
     ],
 });

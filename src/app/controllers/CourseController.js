@@ -41,13 +41,13 @@ class CourseController {
         if (courseImage.status) {
             course.image = courseImage.data.sharePath;
         }
-        course
-            .save(course)
-            .then(res.redirect('/courses'))
-            .catch((e) => {
-                console.log(e);
-                next(e);
-            });
+
+        try {
+            const saveCourse = await course.save();
+            res.redirect(`/courses/${saveCourse.slug}`);
+        } catch (e) {
+            next(e);
+        }
     }
 }
 
