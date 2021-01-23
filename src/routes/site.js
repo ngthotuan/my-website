@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
 const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 
 const siteController = require('../app/controllers/SiteController');
+
+const uploadStatic = process.env.UPLOAD_STATIC || 'uploads';
 
 router.get('/', (req, res, next) => siteController.index(req, res, next));
 
@@ -21,6 +24,11 @@ router.post('/subscribe', (req, res, next) =>
 router.get('/go/:shortUrl', (req, res, next) =>
     siteController.shorten(req, res, next),
 );
+
+router.get(`/${uploadStatic}/:type/:date/:fileName`, (req, res, next) =>
+    siteController.shareFile(req, res, next),
+);
+
 
 router.get('/login', forwardAuthenticated, (req, res, next) =>
     siteController.getLogin(req, res, next),

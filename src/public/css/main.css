@@ -35,11 +35,21 @@ body {
     display: none;
     position: fixed;
     bottom: 20px;
-    right: 30px;
+    right: 20px;
     font-size: 100px;
     color: green;
 
 }
 #topBtn:hover {
     color: red;
+}
+
+/*--------------------------------------------------------------
+# System message
+--------------------------------------------------------------*/
+#system-message {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
 }

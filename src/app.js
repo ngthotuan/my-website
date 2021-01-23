@@ -20,8 +20,6 @@ const db = require('./config/db');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const uploadDir = process.env.UPLOAD_PATH || 'uploads';
-const uploadStatic = process.env.UPLOAD_STATIC || 'uploads';
 
 //connect to db
 db.connect().then();
@@ -31,7 +29,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(path.join('/', uploadStatic), express.static(uploadDir));
 app.use(expressLayouts);
 app.set('layout', './layouts/full-layout');
 

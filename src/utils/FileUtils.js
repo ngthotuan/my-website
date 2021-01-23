@@ -15,19 +15,23 @@ class FileUtils {
 
     static DIFF = 'DIFF';
 
+    // path/file/a.png => path/file
     static getPath(filePath) {
         return filePath.substring(0, filePath.lastIndexOf('/'));
     }
 
+    // path/file/a.png => a.png
     static getFileName(filePath) {
         return filePath.substring(filePath.lastIndexOf('/') + 1);
     }
 
+    // path/file/a.png => .png
     static getFileExtension(filePath) {
         const fileName = FileUtils.getFileName(filePath);
         return fileName.substring(fileName.lastIndexOf('.') + 1);
     }
 
+    // type in private field above
     static getFileType(filePath) {
         const fileExt = FileUtils.getFileExtension(filePath);
         if (this.#IMAGE_REC.includes(fileExt)) {
@@ -47,16 +51,17 @@ class FileUtils {
         }
     }
 
-    static genFileName(filePath) {
+    // path/file/a.png => a-${prefix}.png
+    static genFileName(filePath, prefix = Date.now()) {
         const fileName = FileUtils.getFileName(filePath);
         const lastDot = fileName.lastIndexOf('.');
         if (lastDot !== -1) {
             return `${fileName.substring(
                 0,
                 lastDot,
-            )}-${Date.now()}${fileName.substring(lastDot)}`;
+            )}-${prefix}${fileName.substring(lastDot)}`;
         } else {
-            return `${fileName}-${Date.now()}`;
+            return `${fileName}-${prefix}`;
         }
     }
 
@@ -69,6 +74,8 @@ class FileUtils {
             genName: FileUtils.genFileName(filePath),
         };
     }
+
+    static
 }
 
 module.exports = FileUtils;

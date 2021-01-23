@@ -16,7 +16,6 @@ class UploadController {
     // POST /upload
     async uploadSingle(req, res, next) {
         const saveFile = await this.saveFile(req);
-        console.log(saveFile);
         if (saveFile.status) {
             res.render('upload/success', {
                 title: 'Upload success',
@@ -39,11 +38,12 @@ class UploadController {
         };
         if (req.file) {
             const { originalname, path, mimetype, size } = req.file;
-            const newName = FileUtils.genFileName(originalname);
+            const now = Date.now();
+            const newName = FileUtils.genFileName(originalname, now);
             const fileType = FileUtils.getFileType(originalname);
             const newPath = `${uploadDir}/${fileType.toLowerCase()}`;
             const newFilePath = `${newPath}/${newName}`;
-            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${newName}`;
+            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${now}/${originalname}`;
             if (!fs.existsSync(newPath)) {
                 fs.mkdirSync(newPath);
             }

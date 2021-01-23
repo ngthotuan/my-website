@@ -10,6 +10,8 @@ const User = require('../models/User');
 const fs = require('fs');
 const path = require('path');
 const createError = require('http-errors');
+const FileUtils = require("../../utils/FileUtils");
+const uploadDir = process.env.UPLOAD_PATH || 'uploads';
 
 class SiteController {
     index(req, res) {
@@ -121,6 +123,19 @@ class SiteController {
         urlShorten.save();
 
         res.redirect(urlShorten.fullUrl);
+    }
+
+    // send file upload to client
+    // for /${uploadStatic}/:type/:date/:fileName
+    shareFile(req, res, next) {
+        const {type, date, fileName} = req.params;
+        fs.readFile(path.join(uploadDir, type, FileUtils.genFileName(fileName, date)), (err, data) => {
+            if (err) {
+                next(createError(404, 'Không tìm thấy file'));
+            } else {
+                res.send(data);
+            }
+        });
     }
 
     // GET /register
