@@ -7,12 +7,20 @@
                 <%= errorMessage %>
             </h4>
         <% } %>
-        <div class="mt-5 form form-row justify-content-center">
-            <input id="linkShare" type="text" class="col-5 form-control form" value="<%= shortUrl %>">
-            <button id="btnCopy" onclick="copyToClipboard()" class="mx-3 btn btn-success col-2" data-toggle="tooltip" data-placement="top" title="Nhấn để sao chép liên kết">
-                Sao chép
-            </button>
-            <a class="btn btn-info col-2" data-toggle="tooltip" data-placement="top" title="Truy cập liên kết" target="_blank" href="<%= shortUrl %>">Truy cập thử</a>
+        <div class="row g-3 text-center">
+            <div class="col-sm-6 col-md-8">
+                <input id="linkShare" class="form-control" type="text" name="search" value="<%= shortUrl %>">
+            </div>
+            <div class="col">
+                <button id="btnCopy" onclick="copyToClipboard()"  class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Nhấn để sao chép liên kết">
+                    Sao chép
+                </button>
+            </div>
+            <div class="col">
+                <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nhấn vào để truy cập thử liên kết rút gọn" href="<%= shortUrl %>">
+                    Truy cập thử
+                </a>
+            </div>
             <script>
                 function copyToClipboard() {
                     const copyText = document.getElementById('linkShare');

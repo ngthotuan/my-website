@@ -1,22 +1,31 @@
 async function download(node, name = 'default') {
-    const data = await domtoimage.toPng(node, { bgcolor: "#fff" })
-    const link = document.createElement('a');
-    link.download = `${name}.png`;
-    link.href = data;
-    link.click();
+    const data = await domtoimage.toPng(node, { bgcolor: "#fff" });
+    $("<a></a>")
+        .attr('download', `${name}.png`)
+        .attr('href', data)
+        .get(0)
+        .click();
 }
 async function downloadImage(button, itemId) {
-    const systemMessage = document.querySelector('#system-message');
-    systemMessage.style.display = 'block';
-    const item = document.getElementById(itemId);
-    const node = item.cloneNode(true);
-    node.style.width = '400px';
-    const footer = node.querySelector('.card-footer');
-    footer.removeChild(footer.querySelector('.list-button'));
-    footer.appendChild(document.createTextNode('NGUYENTHOTUAN.ME'));
+    //show message
+    const systemMessage = $("#system-message");
+    const message = createAlert( `Đang xử lý...`, 'success', true, false);
+    const messageId = $(message).attr('id');
+    systemMessage.append(message);
 
-    document.body.appendChild(node);
-    await download(node, `nguyenthotuan.me-${itemId}`);
-    systemMessage.style.display = 'none';
-    document.body.removeChild(node);
+    //create node and append to body
+    const body = $('body');
+    const node = $(`#${itemId}`)
+        .clone()
+        .width('400px')
+        .find('.card-footer')
+            .empty()
+            .append('NGUYENTHOTUAN.ME')
+        .end();
+    body.append($(node));
+
+    //download and remove message
+    await download($(node).get(0), `nguyenthotuan.me-${Date.now()}-${itemId}`);
+    body.remove($(node));
+    $(`#${messageId}`).remove();
 }

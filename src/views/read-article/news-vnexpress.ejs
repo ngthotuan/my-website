@@ -1,6 +1,6 @@
 <!-- ======= Read Article VnExpress Section ======= -->
 <div class="alert alert-primary text-center" role="alert">
-    Cập nhật lần cuối: <%= moment(update).format('LTS, DD-MM-YYYY') %>
+    Cập nhật lần cuối: <%= moment(update).tz('Asia/Ho_Chi_Minh').format('LTS, DD-MM-YYYY') %>
 </div>
 <div class="row">
     <% items.forEach(function(item, i){ %>
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= item.title %></h5>
                     <p class="card-text"><%= item.content %></p>
-                    <p><small class="text-muted">Lúc <%= moment(item.pubDate).format('LT, DD-MM') %></small></p>
+                    <p><small class="text-muted">Lúc <%= moment(item.pubDate).tz('Asia/Ho_Chi_Minh').format('LT, DD-MM') %></small></p>
                 </div>
                 <div class="card-footer text-center">
                     <div class="row list-button">

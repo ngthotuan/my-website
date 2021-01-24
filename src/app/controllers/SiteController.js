@@ -129,13 +129,14 @@ class SiteController {
     // for /${uploadStatic}/:type/:date/:fileName
     shareFile(req, res, next) {
         const {type, date, fileName} = req.params;
-        fs.readFile(path.join(uploadDir, type, FileUtils.genFileName(fileName, date)), (err, data) => {
-            if (err) {
-                next(createError(404, 'Không tìm thấy file'));
-            } else {
-                res.send(data);
+        res.sendFile(
+            path.join(uploadDir, type, FileUtils.genFileName(fileName, date)),
+            (err) => {
+                if( err ) {
+                    next(createError(404, 'Không tìm thấy file'));
+                }
             }
-        });
+        );
     }
 
     // GET /register

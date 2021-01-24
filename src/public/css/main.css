@@ -47,9 +47,20 @@ body {
 /*--------------------------------------------------------------
 # System message
 --------------------------------------------------------------*/
+
+#testBtn {
+    position: fixed;
+    top: 100px;
+}
+
+#testBtn2 {
+    position: fixed;
+    top: 200px;
+}
+
 #system-message {
-    display: none;
     position: fixed;
     bottom: 50px;
-    right: 50px;
+    right: 10px;
 }
+

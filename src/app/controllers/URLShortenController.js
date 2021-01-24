@@ -10,6 +10,9 @@ class UploadController {
 
     async shortLink(req, res, next) {
         let { fullUrl, shortUrl } = req.body;
+        if(!fullUrl.startsWith('http')){
+            fullUrl = `http://${fullUrl}`;
+        }
         let errorMessage;
         try {
             if (shortUrl) {
