@@ -66,6 +66,25 @@ $(function() {
                 'Địa chỉ email không đúng định dạng',
             ),
         ],
+        onSubmit: function (data) {
+            const systemMessage = $('#system-message');
+            const message = createAlert('Đang gửi yêu cầu đăng kí ...', 'success', true, false);
+            const messageId = $(message).attr('id');
+            $(systemMessage).append(message);
+            $.ajax({
+                url: "/subscribe",
+                type: "POST",
+                data: data,
+                success: function (data, textStatus, xhr) {
+                    systemMessage.append(createAlert(data, 'warning'));
+                    $(`#${messageId}`).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    systemMessage.append(createAlert('Đã xảy ra lỗi trong quá trình đăng kí, vui lòng thử lại sau', 'danger'));
+                    $(`#${messageId}`).remove();
+                }
+            });
+        }
     });
 
     Validator({
@@ -96,6 +115,7 @@ $(function() {
         errorSelector: '.invalid-feedback',
         rules: [Validator.isRequired('#fullUrl', 'Vui lòng nhập liên kết gốc')],
     });
+
     Validator({
         form: '#formContact',
         formGroupSelector: '.form-floating',
@@ -112,6 +132,25 @@ $(function() {
             Validator.minLength('#subject', 8, 'Chủ đề thư quá ngắn'),
             Validator.isRequired('#message', 'Vui lòng nhập nội dung tin nhắn'),
         ],
+        onSubmit: function (data) {
+            const systemMessage = $('#system-message');
+            const message = createAlert('Đang gửi tin nhắn ...', 'success', true, false);
+            const messageId = $(message).attr('id');
+            $(systemMessage).append(message);
+            $.ajax({
+                url: "/contact",
+                type: "POST",
+                data: data,
+                success: function (data, textStatus, xhr) {
+                    systemMessage.append(createAlert(data, 'warning'));
+                    $(`#${messageId}`).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    systemMessage.append(createAlert('Đã xảy ra lỗi trong quá trình gửi tin nhắn. Vui lòng thử lại sau', 'danger'));
+                    $(`#${messageId}`).remove();
+                }
+            });
+        }
     });
 
     // Back to top button
@@ -120,7 +159,6 @@ $(function() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     };
-    // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = () => {
         if (
             document.body.scrollTop > 20 ||
@@ -133,13 +171,6 @@ $(function() {
     };
 
     // System message
-    $("#testBtn").on('click', e => {
-        const systemMessage = $("#system-message");
-        systemMessage.append(createAlert( `<b>Test</b> ${Date.now()}`, 'danger', true, true));
-    });
 
-    $("#testBtn2").on('click', e => {
-        const systemMessage = $("#system-message");
-        systemMessage.append(createAlert( ` <b>Test 2 </b> ${Date.now()} <b>Test 2 </b> ${Date.now()}`, 'danger', true, true));
-    });
+
 });

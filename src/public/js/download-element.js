@@ -18,7 +18,7 @@ async function downloadImage(button, itemId) {
     const node = $(`#${itemId}`)
         .clone()
         .width('400px')
-        .find('.card-footer')
+        .children('.card-footer')
             .empty()
             .append('NGUYENTHOTUAN.ME')
         .end();

@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressLayouts);
 app.set('layout', './layouts/full-layout');
-
+app.set('layout extractScripts', true); // for specific page script
 // Express session
 app.use(
     session({

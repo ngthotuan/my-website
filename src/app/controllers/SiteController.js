@@ -49,7 +49,7 @@ class SiteController {
                 );
                 console.log(error);
             }
-            res.send('OK');
+            res.send('Tin nhắn của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ bạn sớm nhất có thể');
         } catch (e) {
             res.send(
                 'Hệ thống gặp lỗi trong quá trình ghi nhận tin nhắn của bạn. Vui lòng thử lại sau',
@@ -93,7 +93,7 @@ class SiteController {
                         );
                         console.log(error);
                     }
-                    res.send('OK');
+                    res.send('Đăng ký nhận tin thành công. Chúng tôi đã gửi email chào mừng tới bạn');
                 }
             } catch (e) {
                 res.send(
