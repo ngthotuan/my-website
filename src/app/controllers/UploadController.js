@@ -43,7 +43,7 @@ class UploadController {
             const fileType = FileUtils.getFileType(originalname);
             const newPath = `${uploadDir}/${fileType.toLowerCase()}`;
             const newFilePath = `${newPath}/${newName}`;
-            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${now}/${originalname}`;
+            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${now}/${originalname}`.replace(/ /g, '%20');
             if (!fs.existsSync(newPath)) {
                 fs.mkdirSync(newPath);
             }

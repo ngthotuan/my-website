@@ -12,7 +12,7 @@
 <div class="row">
     <h3>Danh sách khóa học</h3>
     <% courses.forEach(function(course){ %>
-        <div class="col-sm-4 d-flex my-2">
+        <div class="course-item col-sm-4 d-flex my-2">
             <div class="card flex-fill">
                 <a href="/courses/<%= course.slug %>">
                     <% if(course.image) {%>
@@ -40,3 +40,17 @@
     <% }); %>
 </div>
 <!--End Courses Section-->
+
+<script>
+    $(function(){
+        $('[name=search]').on("keyup", function() {
+            const value = $(this).val().toLowerCase();
+            $(".course-item").filter(function(index, element) {
+                const isInclude = $(element).text().toLowerCase().includes(value);
+                $(element).toggle(isInclude);
+                $(element).toggleClass('d-flex', isInclude);
+            });
+
+        });
+    });
+</script>
