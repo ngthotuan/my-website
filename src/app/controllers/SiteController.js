@@ -10,7 +10,7 @@ const User = require('../models/User');
 const fs = require('fs');
 const path = require('path');
 const createError = require('http-errors');
-const FileUtils = require("../../utils/FileUtils");
+const FileUtils = require('../../utils/FileUtils');
 const uploadDir = process.env.UPLOAD_PATH || 'uploads';
 
 class SiteController {
@@ -35,21 +35,37 @@ class SiteController {
                         `${__dirname}/../../resources/template/email/reply.html`,
                     ),
                 );
+                console.log(mailContent.toString());
+
                 await mailer.sendMail(
                     contactMessage.email,
-                    `Reply: ${contactMessage.subject}`,
-                    mailContent,
+                    `Rep: ${contactMessage.subject}`,
+                    mailContent.toString().format({
+                        subject: contactMessage.subject,
+                        name: contactMessage.name,
+                        email: contactMessage.email,
+                        message: contactMessage.message,
+                        time: res.locals
+                            .moment(Date.now())
+                            .tz('Asia/Ho_Chi_Minh')
+                            .format('LTS, DD-MM-YYYY'),
+                    }),
                 );
                 console.log(
                     `Sent mail contact to ${contactMessage.email} success`,
+                );
+                res.send(
+                    'Tin nhắn của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ bạn sớm nhất có thể',
                 );
             } catch (error) {
                 console.log(
                     `Sent mail contact to ${contactMessage.email} error`,
                 );
                 console.log(error);
+                res.send(
+                    'Hệ thống gặp lỗi trong quá trình ghi nhận tin nhắn của bạn. Vui lòng thử lại sau',
+                );
             }
-            res.send('Tin nhắn của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ bạn sớm nhất có thể');
         } catch (e) {
             res.send(
                 'Hệ thống gặp lỗi trong quá trình ghi nhận tin nhắn của bạn. Vui lòng thử lại sau',
@@ -81,19 +97,31 @@ class SiteController {
                         );
                         await mailer.sendMail(
                             subscriber.email,
-                            'Cảm ơn bạn đã đăng ký theo dõi',
-                            mailContent,
+                            'Đăng ký theo dõi thành công',
+                            mailContent.toString().format({
+                                email: subscriber.email,
+                                time: res.locals
+                                    .moment(Date.now())
+                                    .tz('Asia/Ho_Chi_Minh')
+                                    .format('LTS, DD-MM-YYYY'),
+                            }),
                         );
                         console.log(
                             `Sent mail welcome to ${subscriber.email} success`,
+                        );
+                        res.send(
+                            'Đăng ký nhận tin thành công. Chúng tôi đã gửi email chào mừng tới bạn',
                         );
                     } catch (error) {
                         console.log(
                             `Sent mail welcome to ${subscriber.email} error`,
                         );
                         console.log(error);
+                        res.send(
+                            'Hệ thống gặp lỗi trong quá trình ghi nhận email của bạn. Vui lòng thử lại sau',
+                        );
+                        Subscriber.deleteOne({ email: subscriber.email });
                     }
-                    res.send('Đăng ký nhận tin thành công. Chúng tôi đã gửi email chào mừng tới bạn');
                 }
             } catch (e) {
                 res.send(
@@ -128,14 +156,14 @@ class SiteController {
     // send file upload to client
     // for /${uploadStatic}/:type/:date/:fileName
     shareFile(req, res, next) {
-        const {type, date, fileName} = req.params;
+        const { type, date, fileName } = req.params;
         res.sendFile(
             path.join(uploadDir, type, FileUtils.genFileName(fileName, date)),
             (err) => {
-                if( err ) {
+                if (err) {
                     next(createError(404, 'Không tìm thấy file'));
                 }
-            }
+            },
         );
     }
 

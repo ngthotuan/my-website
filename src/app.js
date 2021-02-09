@@ -20,7 +20,6 @@ const db = require('./config/db');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 //connect to db
 db.connect().then();
 
@@ -55,6 +54,18 @@ app.use('/', (req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.user = req.user;
+    String.prototype.format = function (jsonFormat) {
+        let formatted = this;
+        for (let key in jsonFormat) {
+            if (jsonFormat.hasOwnProperty(key)) {
+                formatted = formatted.replace(
+                    new RegExp(`{${key}}`, 'g'),
+                    jsonFormat[key],
+                );
+            }
+        }
+        return formatted;
+    };
     next();
 });
 
