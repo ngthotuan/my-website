@@ -3,6 +3,6 @@
 *.iml
 node_modules/
 .env
+.ecosystem.config.js
 uploads/
-deploy/
 *.log

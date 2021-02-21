@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'nttuan.live',
+    name: 'nguyenthotuan.me',
     script: 'src/bin/www',
     instance: 'max',
     exec_mode : "cluster",
