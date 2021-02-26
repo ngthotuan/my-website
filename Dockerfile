@@ -10,7 +10,7 @@ COPY package*.json ./
 
 RUN npm install --production
 
-COPY .env .env
+COPY .env.dist .env
 COPY src src
 
 VOLUME /appdata/user-upload
