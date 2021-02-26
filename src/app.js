@@ -7,7 +7,7 @@ const logger = require('morgan');
 const moment = require('moment-timezone');
 const passport = require('passport');
 const flash = require('connect-flash');
-const session = require('express-session');
+const session = require('cookie-session');
 require('dotenv').config();
 const app = express();
 
@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //connect to db
-db.connect().then();
+db.connect().then().catch(createError);
 
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));

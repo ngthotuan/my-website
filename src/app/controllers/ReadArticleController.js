@@ -1,10 +1,10 @@
 const request = require('request');
 const XmlUtils = require('../../utils/XmlUtils');
-const createError = require("http-errors");
+const createError = require('http-errors');
 const url = 'https://vnexpress.net/rss/tin-moi-nhat.rss';
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.SERVER_PORT || 3000;
 
 class ReadArticleController {
     // GET /read-article
@@ -16,7 +16,9 @@ class ReadArticleController {
             },
             function (error, response, body) {
                 if (error) {
-                    console.log(`${Date()} Server have an error while fetch data`);
+                    console.log(
+                        `${Date()} Server have an error while fetch data`,
+                    );
                     console.log(error);
                     next(createError(`Lấy dữ liệu không thành công`));
                 } else {

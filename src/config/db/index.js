@@ -16,8 +16,9 @@ async function connect() {
     } catch (e) {
         console.log('Connect to db failure!');
         console.log(e.message);
-        console.log('......STOP APP.....');
-        process.exit(1);
+        // console.log('......STOP APP.....');
+        // process.exit(1);
+        throw e;
     }
 }
 

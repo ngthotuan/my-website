@@ -35,7 +35,6 @@ class SiteController {
                         `${__dirname}/../../resources/template/email/reply.html`,
                     ),
                 );
-                console.log(mailContent.toString());
 
                 await mailer.sendMail(
                     contactMessage.email,
