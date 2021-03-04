@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:alpine
 
 ENV NODE_ENV=production
 
@@ -10,7 +10,6 @@ COPY package*.json ./
 
 RUN npm install --production
 
-COPY .env.dist .env
 COPY src src
 
 VOLUME /appdata/user-upload

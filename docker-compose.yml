@@ -10,26 +10,28 @@ services:
       - 8080:${SERVER_PORT}
     volumes:
       - /appdata/user-upload:/appdata/user-upload
-    environment:
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_PORT: ${DB_PORT}
-      DB_HOST: ${DB_HOST}
-      DB_NAME: ${DB_NAME}
+    env_file:
+      - .env
+    depends_on:
+      - db
   db:
-    image: clutteredcode/mongo-alpine
     container_name: db
-    environment:
-      MONGO_USERNAME: ${DB_USER}
-      MONGO_PASSWORD: ${DB_PASSWORD}
+    image: mongo
+    restart: always
     volumes:
       - /appdata/db/mongo_nguyenthotuan.me:/data/db
+      - /appdata/db/mongo_nguyenthotuan.me/configdb:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
   db_manager:
     container_name: db_manager
     image: mongo-express
     restart: always
     ports:
       - ${DB_MANAGER_PORT}:8081
+    depends_on:
+      - db
     environment:
       ME_CONFIG_BASICAUTH_USERNAME: ${DB_MANAGER_USER}
       ME_CONFIG_BASICAUTH_PASSWORD: ${DB_MANAGER_PASSWORD}
