@@ -66,6 +66,7 @@ app.use('/', (req, res, next) => {
         }
         return formatted;
     };
+    global.__basedir = path.resolve('.');
     next();
 });
 

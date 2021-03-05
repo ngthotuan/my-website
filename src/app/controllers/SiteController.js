@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const createError = require('http-errors');
 const FileUtils = require('../../utils/FileUtils');
-const uploadDir = process.env.UPLOAD_PATH || 'uploads';
+const uploadDir = 'user-upload';
 
 class SiteController {
     index(req, res) {
@@ -157,7 +157,12 @@ class SiteController {
     shareFile(req, res, next) {
         const { type, date, fileName } = req.params;
         res.sendFile(
-            path.join(uploadDir, type, FileUtils.genFileName(fileName, date)),
+            path.join(
+                __basedir,
+                uploadDir,
+                type,
+                FileUtils.genFileName(fileName, date),
+            ),
             (err) => {
                 if (err) {
                     next(createError(404, 'Không tìm thấy file'));

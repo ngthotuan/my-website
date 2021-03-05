@@ -4,8 +4,8 @@ require('dotenv').config();
 const FileUpload = require('../models/FileUpload');
 const FileUtils = require('../../utils/FileUtils');
 
-const uploadDir = process.env.UPLOAD_PATH || 'uploads';
-const uploadStatic = process.env.UPLOAD_STATIC || 'uploads';
+const uploadDir = 'user-upload';
+const uploadStatic = 'uploads';
 
 class UploadController {
     // GET /upload
@@ -43,7 +43,10 @@ class UploadController {
             const fileType = FileUtils.getFileType(originalname);
             const newPath = `${uploadDir}/${fileType.toLowerCase()}`;
             const newFilePath = `${newPath}/${newName}`;
-            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${now}/${originalname}`.replace(/ /g, '%20');
+            const sharePath = `${uploadStatic}/${fileType.toLowerCase()}/${now}/${originalname}`.replace(
+                / /g,
+                '%20',
+            );
             if (!fs.existsSync(newPath)) {
                 fs.mkdirSync(newPath);
             }

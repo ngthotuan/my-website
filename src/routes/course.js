@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const multer = require('multer');
-const uploadDir = process.env.UPLOAD_PATH || 'uploads';
+const uploadDir = 'user-upload';
 const upload = multer({ dest: uploadDir });
 const courseController = require('../app/controllers/CourseController');
 
