@@ -8,6 +8,11 @@ const debug = require('debug')('nguyenthotuan.me:server');
 const http = require('http');
 require('dotenv').config();
 
+const db = require('../config/db');
+
+//connect to db
+db.connect().then();
+
 /**
  * Get port from environment and store in Express.
  */

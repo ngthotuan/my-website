@@ -14,14 +14,10 @@ const app = express();
 // Passport Config
 require('./config/passport')(passport);
 const route = require('./routes');
-const db = require('./config/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-//connect to db
-db.connect().then().catch(createError);
 
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));

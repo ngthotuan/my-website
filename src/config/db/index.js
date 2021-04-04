@@ -1,25 +1,30 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-async function connect() {
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+
+const getConnectionString = () => {
+    return `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
+};
+
+const connect = async () => {
+    const messageId = setInterval(() => {
+        console.log('Connecting to database...');
+    }, 1000);
     try {
-        await mongoose.connect(
-            `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`,
-            {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useFindAndModify: false,
-                useCreateIndex: true,
-            },
-        );
-        console.log('Connected successfully!');
+        await mongoose.connect(getConnectionString(), {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true,
+            serverSelectionTimeoutMS: 5000,
+        });
+        clearInterval(messageId);
+        console.log('Connected database successfully!');
     } catch (e) {
-        console.log('Connect to db failure!');
-        console.log(e.message);
-        // console.log('......STOP APP.....');
-        // process.exit(1);
-        throw e;
+        clearInterval(messageId);
+        console.log(`Connect to database failure! Message: ${e.message}`);
     }
-}
+};
 
 module.exports = { connect };
