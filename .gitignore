@@ -4,6 +4,5 @@
 node_modules/
 deploy/
 .env
-ecosystem.config.js
 user-upload/
 *.log
