@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "beautiful": "prettier --tab-width 4 --single-quote --trailing-comma all --write 'src/**/*.{js, json}'",
-    "start": "nodemon src/bin/www"
+    "start": "nodemon src/bin/www",
+    "test": ""
   },
   "lint-staged": {
     "src/**/*.{js, json}": "prettier --tab-width 4 --single-quote --trailing-comma all --write"
