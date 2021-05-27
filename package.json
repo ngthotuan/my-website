@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "beautiful": "prettier --tab-width 4 --single-quote --trailing-comma all --write 'src/**/*.{js, json}'",
-    "start": "nodemon src/bin/www",
+    "start": "node src/bin/www",
+    "dev": "nodemon src/bin/www",
     "test": ""
   },
   "lint-staged": {
@@ -41,6 +42,7 @@
   "devDependencies": {
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   }
 }
